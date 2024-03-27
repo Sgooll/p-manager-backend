@@ -17,7 +17,9 @@ dependencies:
   shelf_router: ^1.1.4
   shelf_router_generator: ^1.1.0
   dart_jsonwebtoken: ^2.13.0
-
+  crypto: ^3.0.3
+  encrypt: ^5.0.3
+  socket_io: ^1.0.1
   # path: ^1.8.0
 
 dev_dependencies:

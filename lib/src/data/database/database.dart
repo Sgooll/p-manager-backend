@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:password_manager_back/src/data/database/daos/auth/auth_dao.dart';
+import 'package:password_manager_back/src/data/database/daos/password/password_dao.dart';
 import 'package:password_manager_back/src/data/database/tables.dart';
 import 'package:password_manager_back/src/utils/error.dart';
 import 'package:path/path.dart' as p;
@@ -13,6 +14,7 @@ part 'database.g.dart';
 @DriftDatabase(
   daos: <Type>[
     AuthDao,
+    PasswordDao,
   ],
   tables: <Type>[
     Passwords,

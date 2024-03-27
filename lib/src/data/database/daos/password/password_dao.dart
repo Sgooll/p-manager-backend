@@ -15,11 +15,11 @@ part 'password_dao.g.dart';
 class PasswordDao extends DatabaseAccessor<Database> with _$PasswordDaoMixin {
   PasswordDao(Database db) : super(db);
 
-  // Future<User?> getPassword(int passwordId) async {
-  //   return db.call(() async => await (db.select(users)
-  //     ..where((tbl) => tbl.login.equals(login)))
-  //       .getSingleOrNull());
-  // }
+  Future<Password?> getPassword(int passwordId) async {
+    return db.call(() async => await (db.select(passwords)
+          ..where((tbl) => tbl.id.equals(passwordId)))
+        .getSingleOrNull());
+  }
 
   Future<int> addPassword(
       {required int userId,

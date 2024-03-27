@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main_repository.dart';
+part of 'api.dart';
 
 // **************************************************************************
 // ShelfRouterGenerator
 // **************************************************************************
 
-Router _$MainRepositoryRouter(MainRepository service) {
+Router _$ApiRouter(Api service) {
   final router = Router();
   router.mount(
     r'/auth',

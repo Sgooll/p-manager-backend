@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.4.2"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      sha256: c9c85fedbe2188b95133cbe960e16f5f448860f7133330e272edbbca5893ddc6
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.2"
   async:
     dependency: transitive
     description:
@@ -194,7 +202,7 @@ packages:
     source: hosted
     version: "1.7.2"
   crypto:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: crypto
       sha256: ff625774173754681d66daaf4a448684fb04b78f902da9cb3d308c19cc5e8bab
@@ -241,6 +249,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.1"
+  encrypt:
+    dependency: "direct main"
+    description:
+      name: encrypt
+      sha256: "62d9aa4670cc2a8798bab89b39fc71b6dfbacf615de6cf5001fb39f7e4a996a2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.3"
   ffi:
     dependency: transitive
     description:
@@ -302,6 +318,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      sha256: "761a297c042deedc1ffbb156d6e2af13886bb305c2a343a4d972504cd67dd938"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.1"
   http_methods:
     dependency: transitive
     description:
@@ -526,6 +550,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
+  rikulo_commons:
+    dependency: transitive
+    description:
+      name: rikulo_commons
+      sha256: "3208a504bf1e895ed634f19273c2d6d342d91978660def747f1dbb44f01543da"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.0.1+1"
   shelf:
     dependency: "direct main"
     description:
@@ -579,6 +611,22 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  socket_io:
+    dependency: "direct main"
+    description:
+      name: socket_io
+      sha256: "5e1641a7d356385e5cd946a46c9e46dea6a4b4b73cdd6cb574f30f1ea66f41e5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
+  socket_io_common:
+    dependency: transitive
+    description:
+      name: socket_io_common
+      sha256: "469c7e6bb0c8d571a5158c1352112654f03aedc2f0a246533e1cbdb41efa4937"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   source_gen:
     dependency: transitive
     description:
@@ -643,6 +691,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.11.1"
+  stream:
+    dependency: transitive
+    description:
+      name: stream
+      sha256: "386a8209f1a704d697e4d9164378ef8b41e8256d8e0632782434029b9cf38951"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.3"
   stream_channel:
     dependency: transitive
     description:
@@ -715,6 +771,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.3.2"
+  uuid:
+    dependency: transitive
+    description:
+      name: uuid
+      sha256: "648e103079f7c64a36dc7d39369cabb358d377078a051d6ae2ad3aa539519313"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.7"
   vector_math:
     dependency: transitive
     description:

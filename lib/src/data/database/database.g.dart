@@ -538,6 +538,7 @@ abstract class _$Database extends GeneratedDatabase {
   late final $PasswordsTable passwords = $PasswordsTable(this);
   late final $UsersTable users = $UsersTable(this);
   late final AuthDao authDao = AuthDao(this as Database);
+  late final PasswordDao passwordDao = PasswordDao(this as Database);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();

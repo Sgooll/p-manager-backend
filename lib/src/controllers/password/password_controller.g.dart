@@ -1,17 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'password_repository.dart';
+part of 'password_controller.dart';
 
 // **************************************************************************
 // ShelfRouterGenerator
 // **************************************************************************
 
-Router _$PasswordRepositoryRouter(PasswordRepository service) {
+Router _$PasswordControllerRouter(PasswordController service) {
   final router = Router();
   router.add(
     'POST',
     r'/add',
-    service.auth,
+    service.add,
+  );
+  router.add(
+    'POST',
+    r'/get',
+    service.get,
   );
   return router;
 }
