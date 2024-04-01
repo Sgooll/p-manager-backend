@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
+import 'package:password_manager_back/password_manager_back.dart';
 import 'package:password_manager_back/src/controllers/base_controller.dart';
 import 'package:password_manager_back/src/utils/encrypt_service.dart';
 import 'package:password_manager_back/src/utils/jwt_utils.dart';
@@ -85,6 +87,62 @@ class PasswordController extends ResponseTemplates {
       return Response.ok(ok({
         'password': password.copyWith(password: dectyptedPassword).toJson()
       }));
+    } catch (e) {
+      return Response.forbidden(error(errorMessage: e.toString()));
+    }
+  }
+
+  @Route.post('/send')
+  Future<Response> send(Request request) async {
+    final data = await request.readAsString();
+    try {
+      final map = jsonDecode(data);
+
+      request.requestedUri;
+
+      // final token = map['token'];
+      final address = map['address'];
+      final port = map['port'];
+      final currentClient = clients.firstWhereOrNull((e) =>
+          e.remoteAddress.address.toString() == address &&
+          e.remotePort.toString() == port);
+
+      if (currentClient == null) {
+        return Response.forbidden(
+            error(errorMessage: 'Десктопный клинет не подключен'));
+      }
+
+      currentClient.write('HELLO_)');
+
+      return Response.ok(ok({'data': "${currentClient}"}));
+    } catch (e) {
+      return Response.forbidden(error(errorMessage: e.toString()));
+    }
+  }
+
+  @Route.post('/join')
+  Future<Response> join(Request request) async {
+    final data = await request.readAsString();
+    try {
+      final map = jsonDecode(data);
+
+      // final token = map['token'];
+      final address = map['address'];
+      final port = map['port'];
+
+      final currentClient = clients.firstWhereOrNull((e) =>
+          e.remoteAddress.address.toString() == address &&
+          e.remotePort.toString() == port);
+
+      if (currentClient == null) {
+        return Response.forbidden(
+            error(errorMessage: 'Десктопный клинет не подключен'));
+      }
+
+
+      currentClient.write("{'command': 'join'}");
+
+      return Response.ok(ok({'data': true}));
     } catch (e) {
       return Response.forbidden(error(errorMessage: e.toString()));
     }

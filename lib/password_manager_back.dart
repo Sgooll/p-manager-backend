@@ -4,57 +4,51 @@ import 'dart:typed_data';
 import 'package:password_manager_back/src/controllers/api/api.dart';
 import 'package:password_manager_back/src/data/database/database.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
+import 'package:shelf_web_socket/shelf_web_socket.dart';
+// import 'package:socket_io/socket_io.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+List<Socket> clients = [];
 
 void main() async {
   var connection = Database();
 
   Api server = Api(connection);
 
-  final ip = InternetAddress.anyIPv4;
-  final server1 = await ServerSocket.bind(ip, 3000);
-  print("WSServer is running on: ${ip.address}:3000");
-  server1.listen((Socket event) {
-    handleConnection(event);
-  });
+  // var handler = webSocketHandler((webSocket) {
+  //   webSocket as WebSocketChannel;
+  //   webSocket.stream.listen((message) {
+  //     webSocket.sink.add("echo $message");
+  //   });
+  // });
+  //
+  // shelf_io.serve(handler, '127.0.0.1', 3000).then((server) {
+  //   print('Serving at ws://${server.address.host}:${server.port}');
+  // });
 
   var servedServer = await shelf_io.serve(server.handler, 'localhost', 8080);
 
   print('Serving at http://${servedServer.address.host}:${servedServer.port}');
-
-
-
-//todo desktop
-// final socket = await Socket.connect("0.0.0.0", 3000);
-  // print('Connected to: ${socket.remoteAddress.address}:${socket.remotePort}');
-  // socket.listen((Uint8List data) {
-  //   final serverResponse = String.fromCharCodes(data);
   //
-  //     print(serverResponse.toString());
+  // final ip = InternetAddress.anyIPv4;
+  final server1 = await ServerSocket.bind('127.0.0.1', 3000);
+  print("WSServer is running on: 127.0.0.1:3000");
+  server1.listen((Socket client) {
+    clients.add(client);
+    print('getConnection - ${client.address.address}:${client.remotePort}');
+  });
+
+  // var io = Server();
+  //
+  //
+  // io.on('connection', (client) {
+  //   print('connection default namespace');
+  //   client.on('msg', (data) {
+  //     print('data from default => $data');
+  //     client.emit('fromServer', "ok");
+  //   });
   // });
-}
+  // await io.listen(3000);
 
-void handleConnection(Socket client) {
-  print(
-    "Connection from ${client.remoteAddress.address}:${client.remotePort}",
-  );
-
-  client.write('object');
-
-  client.listen(
-    (Uint8List data) async {
-      final message = String.fromCharCodes(data);
-
-      print(message);
-    }, // handle errors
-    onError: (error) {
-      print(error);
-      client.close();
-    },
-
-    // handle the client closing the connection
-    onDone: () {
-      print('Client left');
-      client.close();
-    },
-  );
+  // print(await io.ready);
 }
