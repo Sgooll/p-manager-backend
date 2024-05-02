@@ -12,9 +12,16 @@ void main() async {
 
   Api server = Api(connection);
 
+  final securityContext = SecurityContext(
+  );
+
+  securityContext.setTrustedCertificates('public.crt');
+
   var servedServer = await shelf_io.serve(
       server.handler, '178.208.85.222', 8080,
-      securityContext: SecurityContext());
+      securityContext: securityContext,
+   );
+
 
   print('Serving at https://${servedServer.address.host}:${servedServer.port}');
   final server1 = await ServerSocket.bind('178.208.85.222', 3000);
