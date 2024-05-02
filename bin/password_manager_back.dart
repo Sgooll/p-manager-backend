@@ -18,6 +18,6 @@ void main() async {
   print("WSServer is running on: 178.208.85.222:3000");
   server1.listen((Socket client) {
     clients.add(client);
-    print('getConnection - ${client.address.address}:${client.remotePort}');
+    print('getConnection - ${client.remoteAddress.address}:${client.remotePort}');
   });
 }
