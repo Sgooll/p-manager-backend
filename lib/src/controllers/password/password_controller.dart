@@ -103,6 +103,13 @@ class PasswordController extends ResponseTemplates {
       // final token = map['token'];
       final address = map['address'];
       final port = map['port'];
+
+      print(address);
+      print(port);
+
+      print(clients.first.remoteAddress.address);
+      print(clients.first.remotePort);
+
       final currentClient = clients.firstWhereOrNull((e) =>
           e.remoteAddress.address.toString() == address &&
           e.remotePort.toString() == port);

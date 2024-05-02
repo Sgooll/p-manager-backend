@@ -35,6 +35,7 @@ void main() async {
   print("WSServer is running on: 127.0.0.1:3000");
   server1.listen((Socket client) {
     clients.add(client);
+    print('clients = ${clients.first.remoteAddress}');
     print('getConnection - ${client.remoteAddress.address}:${client.remotePort}');
   });
 
