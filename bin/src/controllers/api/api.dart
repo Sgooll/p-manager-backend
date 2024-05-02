@@ -1,8 +1,9 @@
-import 'package:password_manager_back/src/controllers/auth/auth_controller.dart';
-import 'package:password_manager_back/src/controllers/password/password_controller.dart';
-import 'package:password_manager_back/src/data/database/database.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
+
+import '../../data/database/database.dart';
+import '../auth/auth_controller.dart';
+import '../password/password_controller.dart';
 
 part 'api.g.dart';
 

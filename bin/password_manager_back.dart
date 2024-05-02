@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:password_manager_back/src/controllers/api/api.dart';
-import 'package:password_manager_back/src/data/database/database.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
+
+import 'src/controllers/api/api.dart';
+import 'src/data/database/database.dart';
 
 List<Socket> clients = [];
 

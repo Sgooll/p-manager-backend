@@ -2,8 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:drift/drift.dart';
-import 'package:password_manager_back/src/data/database/database.dart';
-import 'package:password_manager_back/src/data/database/tables.dart';
+
+import '../../database.dart';
+import '../../tables.dart';
 
 part 'password_dao.g.dart';
 

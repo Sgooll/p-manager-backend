@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
-import 'package:password_manager_back/src/controllers/base_controller.dart';
-import 'package:password_manager_back/src/data/database/database.dart';
-import 'package:password_manager_back/src/utils/jwt_utils.dart';
 import 'package:shelf/shelf.dart';
+
+import '../../../data/database/database.dart';
+import '../../../utils/jwt_utils.dart';
+import '../../base_controller.dart';
 
 class AuthService extends ResponseTemplates {
   final Database database;

@@ -1,10 +1,10 @@
 
-import 'package:password_manager_back/src/controllers/auth/service/auth_service.dart';
-import 'package:password_manager_back/src/controllers/base_controller.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
 import '../../data/database/database.dart';
+import '../base_controller.dart';
+import 'service/auth_service.dart';
 
 part 'auth_controller.g.dart';
 

@@ -1,17 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:collection/collection.dart';
-import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
-import 'package:password_manager_back/password_manager_back.dart';
-import 'package:password_manager_back/src/controllers/base_controller.dart';
-import 'package:password_manager_back/src/utils/encrypt_service.dart';
-import 'package:password_manager_back/src/utils/jwt_utils.dart';
-import 'package:password_manager_back/src/utils/response.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf_router/shelf_router.dart';
 
+import '../../../password_manager_back.dart';
 import '../../data/database/database.dart';
+import '../../utils/encrypt_service.dart';
+import '../../utils/jwt_utils.dart';
+import '../base_controller.dart';
 
 part 'password_controller.g.dart'; // generated with 'pub run build_runner build'
 
@@ -103,12 +100,6 @@ class PasswordController extends ResponseTemplates {
       // final token = map['token'];
       final address = map['address'];
       final port = map['port'];
-
-      print(address);
-      print(port);
-
-      print(clients.first.remoteAddress.address);
-      print(clients.first.remotePort);
 
       final currentClient = clients.firstWhereOrNull((e) =>
           e.remoteAddress.address.toString() == address &&
