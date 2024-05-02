@@ -18,5 +18,15 @@ Router _$PasswordControllerRouter(PasswordController service) {
     r'/get',
     service.get,
   );
+  router.add(
+    'POST',
+    r'/send',
+    service.send,
+  );
+  router.add(
+    'POST',
+    r'/join',
+    service.join,
+  );
   return router;
 }
