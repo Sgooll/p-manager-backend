@@ -11,7 +11,6 @@ dependencies:
 
   collection: ^1.18.0
   drift: ^2.16.0
-  sqlite3_flutter_libs: ^0.5.0
   path: ^1.9.0
   shelf: ^1.4.1
   get_it: ^7.6.7
