@@ -9,11 +9,11 @@ part of 'api.dart';
 Router _$ApiRouter(Api service) {
   final router = Router();
   router.mount(
-    r'/auth',
+    r'/api/auth',
     service._auth.call,
   );
   router.mount(
-    r'/password',
+    r'/api/password',
     service._passwords.call,
   );
   return router;

@@ -12,10 +12,12 @@ class Api {
 
   final Database database;
 
-  @Route.mount('/auth')
+
+
+  @Route.mount('/api/auth')
   Router get _auth => AuthController(database).router;
 
-  @Route.mount('/password')
+  @Route.mount('/api/password')
   Router get _passwords => PasswordController(database).router;
 
   Router get router => _$ApiRouter(this);
