@@ -100,6 +100,7 @@ class PasswordController extends ResponseTemplates {
       // final token = map['token'];
       final address = map['address'];
       final port = map['port'];
+      final text = map['text'];
 
       final currentClient = clients.firstWhereOrNull((e) =>
           e.remoteAddress.address.toString() == address &&
@@ -110,7 +111,7 @@ class PasswordController extends ResponseTemplates {
             error(errorMessage: 'Десктопный клинет не подключен'));
       }
 
-      currentClient.write('HELLO_)');
+      currentClient.write(text);
 
       return Response.ok(ok({'data': "${currentClient}"}));
     } catch (e) {
