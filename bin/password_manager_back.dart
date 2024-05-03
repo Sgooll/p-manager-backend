@@ -16,6 +16,8 @@ void main() async {
 
   securityContext.useCertificateChain(
       "/etc/letsencrypt/live/pmanager-api.ru/fullchain.pem");
+  
+  securityContext.usePrivateKey('/etc/letsencrypt/live/pmanager-api.ru/privkey.pem');
 
 
     var servedServer = await shelf_io.serve(
