@@ -15,6 +15,11 @@ Router _$PasswordControllerRouter(PasswordController service) {
   );
   router.add(
     'POST',
+    r'/delete',
+    service.delete,
+  );
+  router.add(
+    'POST',
     r'/get',
     service.get,
   );
