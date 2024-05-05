@@ -72,7 +72,7 @@ class PasswordController extends ResponseTemplates {
 
       await database.passwordDao.deletePassword(
         userId: payload['userId'],
-        passwordId: id,
+        passwordId: int.parse(id),
       );
 
       return Response.ok(ok({'result': true}));
