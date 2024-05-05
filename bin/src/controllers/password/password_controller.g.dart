@@ -20,6 +20,11 @@ Router _$PasswordControllerRouter(PasswordController service) {
   );
   router.add(
     'POST',
+    r'/getAll',
+    service.getAll,
+  );
+  router.add(
+    'POST',
     r'/send',
     service.send,
   );
