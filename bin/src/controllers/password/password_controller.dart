@@ -71,7 +71,10 @@ class PasswordController extends ResponseTemplates {
             error(errorMessage: 'Авторизация не пройдена'));
       }
 
-      final password = await database.passwordDao.getPassword(passwordId);
+      final userId = payload['userId'];
+
+      final password =
+          await database.passwordDao.getPassword(userId, passwordId);
 
       if (password == null) {
         return Response.forbidden(
@@ -84,6 +87,48 @@ class PasswordController extends ResponseTemplates {
       return Response.ok(ok({
         'password': password.copyWith(password: dectyptedPassword).toJson()
       }));
+    } catch (e) {
+      return Response.forbidden(error(errorMessage: e.toString()));
+    }
+  }
+
+  @Route.post('/getAll')
+  Future<Response> getAll(Request request) async {
+    final data = await request.readAsString();
+    try {
+      final map = jsonDecode(data);
+      final token = map['token'];
+      final payload = await JWTUtils.verifyJWT(token);
+
+      if (payload == null) {
+        return Response.forbidden(
+            error(errorMessage: 'Авторизация не пройдена'));
+      }
+
+      final userId = payload['userId'];
+
+      final passwords = await database.passwordDao.getAllPasswords(userId);
+
+      if (passwords == null) {
+        return Response.forbidden('Произошла неизвестная ошибка');
+      }
+
+      var decryptedPasswords = [];
+
+      for (var pass in passwords) {
+        final dectyptedPassword = await EncryptService.decodeRSA(pass.password);
+
+        decryptedPasswords.add(dectyptedPassword);
+      }
+
+      final List<Map<String, dynamic>> passwordsJsonList = [];
+
+      for (int i = 0; i < passwords.length; i++) {
+        passwordsJsonList.add(
+            passwords[i].copyWith(password: decryptedPasswords[i]).toJson());
+      }
+
+      return Response.ok(ok({'passwords': passwordsJsonList}));
     } catch (e) {
       return Response.forbidden(error(errorMessage: e.toString()));
     }
@@ -137,7 +182,6 @@ class PasswordController extends ResponseTemplates {
         return Response.forbidden(
             error(errorMessage: 'Десктопный клинет не подключен'));
       }
-
 
       currentClient.write("{'command': 'join'}");
 
