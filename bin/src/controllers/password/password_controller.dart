@@ -53,6 +53,34 @@ class PasswordController extends ResponseTemplates {
     }
   }
 
+  @Route.post('/delete')
+  Future<Response> delete(Request request) async {
+    final data = await request.readAsString();
+    try {
+      final map = jsonDecode(data);
+      final token = map['token'];
+      final id = map['id'];
+      if (id == null) {
+        return Response.forbidden(error(errorMessage: 'id is required'));
+      }
+      final payload = await JWTUtils.verifyJWT(token);
+
+      if (payload == null) {
+        return Response.forbidden(
+            error(errorMessage: 'Авторизация не пройдена'));
+      }
+
+      await database.passwordDao.deletePassword(
+        userId: payload['userId'],
+        passwordId: id,
+      );
+
+      return Response.ok(ok({'result': true}));
+    } catch (e) {
+      return Response.forbidden(error(errorMessage: e.toString()));
+    }
+  }
+
   @Route.post('/get')
   Future<Response> get(Request request) async {
     final data = await request.readAsString();

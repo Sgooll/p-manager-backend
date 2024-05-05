@@ -24,22 +24,31 @@ class PasswordDao extends DatabaseAccessor<Database> with _$PasswordDaoMixin {
 
   Future<List<Password>?> getAllPasswords(int userId) async {
     return db.call(() async => await (db.select(passwords)
-      ..where((tbl) => tbl.userId.equals(userId)))
+          ..where((tbl) => tbl.userId.equals(userId)))
         .get());
   }
 
-
-  Future<int> addPassword(
+  Future<int?> addPassword(
       {required int userId,
       required String password,
       String? url,
       String? description,
       String? name}) async {
-    return db.into(passwords).insert(PasswordsCompanion(
+    return db.call(() async => db.into(passwords).insert(PasswordsCompanion(
         password: Value(password),
         name: Value(name),
         description: Value(description),
         url: Value(url),
-        userId: Value(userId)));
+        userId: Value(userId))));
+  }
+
+  Future<void> deletePassword({
+    required int userId,
+    required int passwordId,
+  }) async {
+    return db.call(() async =>
+        await ((db.delete(passwords)..where((tbl) => tbl.id.equals(passwordId)))
+              ..where((tbl) => tbl.userId.equals(userId)))
+            .go());
   }
 }
